@@ -77,7 +77,7 @@ $ = require('jquery');
 
 (fill = function(item) {
   return $('.tagline').append("" + item);
-})('Something slick');
+})('Something With Balls');
 
 fill;
 

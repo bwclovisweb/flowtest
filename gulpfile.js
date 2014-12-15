@@ -11,7 +11,7 @@ var jsSource = [
 	'components/scripts/pixgrid.js',
 	'components/scripts/tagline.js'
 	];
-var sass = ['components/sass/style.scss'];
+var sassSrc = ['components/sass/style.scss'];
 
 gulp.task('coffee',function(){
 	gulp.src(coffeeSrc)
@@ -28,7 +28,7 @@ gulp.task('js', function(){
 });
 
 gulp.task('sass', function(){
-	gulp.src(sass)
+	gulp.src(sassSrc)
 	.pipe(compass({
 		sass: 'components/sass',
 		image: 'builds/development/img',
@@ -36,6 +36,12 @@ gulp.task('sass', function(){
 	}))
 		.on('error', gutil.log)
 	.pipe(gulp.dest('builds/development/css'))
-})
+});
+
+gulp.task('watch', function(){
+	gulp.watch(coffeeSrc,['coffee']);
+	gulp.watch(jsSource,['js']);
+	gulp.watch('components/sass/*.scss',['sass']);
+});
 
 gulp.task('default',['coffee','js','sass']);
